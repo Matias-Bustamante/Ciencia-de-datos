@@ -60,28 +60,30 @@ def graficos(calificacion, muestras, x, y, intervalo):
 
     axs['C'].scatter(x,y,color="deeppink", s=100)
 
-    axs['C'].axvline(intervalo[0], label="IC: Limite inferior", 
+    axs['C'].axvline(intervalo[0], label="IC: Limite inferior: "+str(np.round(intervalo[0],2)), 
                 color="deeppink",
                 lw=4, 
                 linestyle="--"
                 )
     
     
-    axs['C'].axvline(intervalo[1], label="IC: Limite superior", 
-                color="deeppink",
-                lw=4, 
-                linestyle="--"
+    axs['C'].axvline(intervalo[1],
+                    label="IC: Limite superior: "+str(np.round(intervalo[1],2)), 
+                    color="deeppink",
+                    lw=4, 
+                    linestyle="--"
                 )
     
     axs['C'].axvline(calificacion.mean(), 
-                label="Media poblacional", 
+                label="Media poblacional: " + str(np.round(calificacion.mean(),2)), 
                 color="gold",
                 lw=10, 
                 linestyle=":")
     
     axs['C'].hist(muestras.mean(axis=1), bins=100, 
              alpha=0.5, 
-             color="turquoise")
+             color="turquoise", 
+             label="Media muestral: "+str(np.round(muestras.mean(),2)))
     
     axs['C'].set_title("Intervalos de confianza al 95%")
     axs['C'].set_xlabel("Calificaciones promedio de las muestras")
